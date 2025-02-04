@@ -1,0 +1,23 @@
+service: aws-transcribe-test-hml-defaultFunction
+
+provide:
+  name: aws-transcribe-test-hml-defaultFunction
+  runtime: nodejs14.x
+  stage: hml
+  region: us-east-1
+
+functions:
+  hello:
+    handler: dist/src/handler.hello
+    events:
+      - http:
+        path: hello
+        method: get
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+custom:
+  serverless-offline:
+    httpPort: 3000
